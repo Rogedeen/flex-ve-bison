@@ -528,7 +528,7 @@ char *yytext;
 #include <stdlib.h>
 #include <string.h>
 
-int line_number = 1; // yylineno yerine kullanacaðýmýz satýr sayacý
+int line_number = 1;
 
 #line 533 "lexer.c"
 #line 534 "lexer.c"
@@ -814,7 +814,7 @@ case 1:
 YY_DO_BEFORE_ACTION; /* set up yytext again */
 YY_RULE_SETUP
 #line 16 "lexer.l"
-;  /* Satýr sonuna kadar yorum */
+;  /* Satir sonuna kadar yorum */
 	YY_BREAK
 case 2:
 /* rule 2 can match eol */

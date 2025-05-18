@@ -72,12 +72,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// yyerror ve yylex bildirimleri
 void yyerror(const char *s);
 int yylex(void);
 
-// Lex'te tanýmlanan satýr sayacýný burada kullanmak için extern
 extern int line_number;
+int hata_var = 0;
 
 #define _CRT_NONSTDC_NO_DEPRECATE
 #define _CRT_SECURE_NO_WARNINGS
@@ -102,7 +101,7 @@ void print_expr_list(ExprList* list) {
     }
 }
 
-#line 106 "parser.c"
+#line 105 "parser.c"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -575,11 +574,11 @@ static const yytype_int8 yytranslate[] =
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    73,    73,    76,    83,    84,    88,    89,    90,    91,
-      92,    93,    94,    98,   102,   106,   110,   111,   115,   119,
-     120,   121,   122,   126,   127,   128,   129,   130,   131,   132,
-     133,   134,   138,   139,   140,   141,   142,   143,   147,   154,
-     157,   164,   165,   166,   167
+       0,    66,    66,    70,    77,    78,    82,    83,    84,    85,
+      86,    87,    88,    92,    96,   100,   104,   105,   109,   113,
+     114,   115,   116,   120,   121,   122,   123,   124,   125,   126,
+     127,   128,   132,   133,   134,   135,   136,   137,   141,   148,
+     151,   158,   159,   160,   161
 };
 #endif
 
@@ -1213,48 +1212,50 @@ yyreduce:
   switch (yyn)
     {
   case 2: /* program: statements  */
-#line 73 "parser.y"
+#line 66 "parser.y"
                {
-        printf("[Basarili] Kod gramer kurallarina uygundur.\n");
+        if (!hata_var)
+            printf("[Basarili] Kod gramer kurallarina uygundur.\n");
     }
 #line 1221 "parser.c"
     break;
 
   case 3: /* program: %empty  */
-#line 76 "parser.y"
-                        {
-        printf("[Bos program] Kod gramer kurallarina uygundur.\n");
+#line 70 "parser.y"
+                      {
+        if (!hata_var)
+            printf("[Bos program] Kod gramer kurallarina uygundur.\n");
     }
-#line 1229 "parser.c"
+#line 1230 "parser.c"
     break;
 
   case 38: /* function_call: IDENTIFIER expr_list  */
-#line 147 "parser.y"
+#line 141 "parser.y"
                          {
        
         
     }
-#line 1238 "parser.c"
+#line 1239 "parser.c"
     break;
 
   case 39: /* expr_list: expr  */
-#line 154 "parser.y"
+#line 148 "parser.y"
            {
           (yyval.exprlist) = create_expr_list((yyvsp[0].intval), NULL);
       }
-#line 1246 "parser.c"
+#line 1247 "parser.c"
     break;
 
   case 40: /* expr_list: expr ',' expr_list  */
-#line 157 "parser.y"
+#line 151 "parser.y"
                          {
           (yyval.exprlist) = create_expr_list((yyvsp[-2].intval), (yyvsp[0].exprlist));
       }
-#line 1254 "parser.c"
+#line 1255 "parser.c"
     break;
 
 
-#line 1258 "parser.c"
+#line 1259 "parser.c"
 
       default: break;
     }
@@ -1447,10 +1448,10 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 170 "parser.y"
+#line 164 "parser.y"
 
 
-// yylineno yerine line_number kullanýldý
 void yyerror(const char *s) {
-    fprintf(stderr, "Hata (satýr %d): %s\n", line_number, s);
+    hata_var = 1;
+    fprintf(stderr, "Hata (satir %d): %s\n", line_number, s);
 }

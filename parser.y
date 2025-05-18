@@ -2,12 +2,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// yyerror ve yylex bildirimleri
 void yyerror(const char *s);
 int yylex(void);
 
-// Lex'te tanýmlanan satýr sayacýný burada kullanmak için extern
 extern int line_number;
+int hata_var = 0;
 
 #define _CRT_NONSTDC_NO_DEPRECATE
 #define _CRT_SECURE_NO_WARNINGS
@@ -33,32 +32,26 @@ void print_expr_list(ExprList* list) {
 }
 %}
 
-
 %union {
     int intval;
     char* id;
-    struct ExprList* exprlist;  // <- BUNU EKLE
+    struct ExprList* exprlist; 
 }
 
 %type <exprlist> expr_list
 
-
 %token <intval> INTEGER
 %token <id> IDENTIFIER
 
-// Operatörler
 %token ASSIGN PLUS MINUS TIMES DIVIDE MOD POWER
 %token EQ NEQ LT LE GT GE
 %token AND OR NOT
 
-// Kontrol ifadeleri
 %token IF THEN ELSE ELSE_CONT
 %token WHILE WHILE_COND END_BLOCK
 
-// Fonksiyonlar
 %token FUNCTION END_FUNCTION RETURN
 
-// Çizim ve giriþ
 %token DRAW_CIRCLE
 %token KEY_PRESSED
 %token TUS_UP TUS_DOWN TUS_LEFT TUS_RIGHT
@@ -71,13 +64,14 @@ void print_expr_list(ExprList* list) {
 
 program:
     statements {
-        printf("[Basarili] Kod gramer kurallarina uygundur.\n");
+        if (!hata_var)
+            printf("[Basarili] Kod gramer kurallarina uygundur.\n");
     }
-    | /* boþ program */ {
-        printf("[Bos program] Kod gramer kurallarina uygundur.\n");
+  | /* boþ program */ {
+        if (!hata_var)
+            printf("[Bos program] Kod gramer kurallarina uygundur.\n");
     }
 ;
-
 
 statements:
     statements statement
@@ -169,7 +163,7 @@ logic_expr:
 
 %%
 
-// yylineno yerine line_number kullanýldý
 void yyerror(const char *s) {
-    fprintf(stderr, "Hata (satýr %d): %s\n", line_number, s);
+    hata_var = 1;
+    fprintf(stderr, "Hata (satir %d): %s\n", line_number, s);
 }

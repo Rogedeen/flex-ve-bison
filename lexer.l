@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-int line_number = 1; // yylineno yerine kullanacağımız satır sayacı
+int line_number = 1;
 
 %}
 
@@ -13,7 +13,7 @@ int line_number = 1; // yylineno yerine kullanacağımız satır sayacı
 
 %%
 
-"--".*$                             ;  /* Satır sonuna kadar yorum */
+"--".*$                             ;  /* Satir sonuna kadar yorum */
 
 \n                                  { line_number++; }
 [ \t\r]+                            ;
