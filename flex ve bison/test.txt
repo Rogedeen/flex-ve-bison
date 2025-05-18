@@ -1,6 +1,34 @@
-x <- 5 + 3
-y <- x - 2
-z <- x * y
-a <- x / 2
-b <- x % 2
-c <- 2 ^ 3
+-- Basit değişken atamaları
+x <- 10
+y <- 5
+
+-- Aritmetik işlem
+z <- x + y * 2
+
+-- Koşullu ifade
+eger z > 20 ise
+    sonuc <- 1
+aksi halde
+    sonuc <- 0
+
+-- Döngü örneği
+dongu x <> 1 iken
+    eger x % 2 == 0 ise
+        x <- x / 2
+    aksi halde
+        x <- 3 * x + 1
+neki
+
+-- Fonksiyon tanımı
+fonk topla a, b:
+    sonuc <- a + b
+knof
+
+-- Giriş kontrolü
+eger tus_basildi TUS_YUKARI ise oyuncu_y <- oyuncu_y + 5
+eger tus_basildi TUS_ASAGI ise oyuncu_y <- oyuncu_y - 5
+eger tus_basildi TUS_SOLA  ise oyuncu_x <- oyuncu_x - 5
+eger tus_basildi TUS_SAGA  ise oyuncu_x <- oyuncu_x + 5
+
+-- Çizim
+daire_ciz oyuncu_x oyuncu_y 10

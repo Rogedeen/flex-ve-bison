@@ -28,7 +28,7 @@
     <None Include="..\parser.y" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\parser.h" />
+    <ClInclude Include="..\parser.tab.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="test.txt" />

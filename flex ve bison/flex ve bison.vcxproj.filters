@@ -30,7 +30,7 @@
     <None Include="..\parser.y" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\parser.h">
+    <ClInclude Include="..\parser.tab.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
