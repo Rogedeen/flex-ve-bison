@@ -4,6 +4,7 @@
 %{
 #include "parser.h"
 #include <stdio.h>
+FILE* yyin;
 %}
 
 %%

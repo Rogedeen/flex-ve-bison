@@ -24,7 +24,7 @@ int yylex(void);
 %%
 
 program:
-    statements { printf("[Baþarýlý] Kod gramer kurallarýna uygundur.\n"); }
+    statements { printf("[Basarili] Kod gramer kurallarina uygundur.\n"); }
 ;
 
 statements:
