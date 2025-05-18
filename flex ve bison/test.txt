@@ -32,3 +32,4 @@ eger tus_basildi TUS_SAGA  ise oyuncu_x <- oyuncu_x + 5
 
 -- Çizim
 daire_ciz oyuncu_x oyuncu_y 10
+topla 3, 5

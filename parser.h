@@ -96,12 +96,13 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 16 "parser.y"
+#line 37 "parser.y"
 
     int intval;
     char* id;
+    struct ExprList* exprlist;  // <- BUNU EKLE
 
-#line 105 "parser.h"
+#line 106 "parser.h"
 
 };
 typedef union YYSTYPE YYSTYPE;

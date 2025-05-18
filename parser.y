@@ -11,12 +11,37 @@ extern int line_number;
 
 #define _CRT_NONSTDC_NO_DEPRECATE
 #define _CRT_SECURE_NO_WARNINGS
+
+typedef struct ExprList {
+    int value;
+    struct ExprList* next;
+} ExprList;
+
+ExprList* create_expr_list(int val, ExprList* next) {
+    ExprList* list = (ExprList*)malloc(sizeof(ExprList));
+    list->value = val;
+    list->next = next;
+    return list;
+}
+
+void print_expr_list(ExprList* list) {
+    while (list) {
+        printf("%d", list->value);
+        if (list->next) printf(", ");
+        list = list->next;
+    }
+}
 %}
+
 
 %union {
     int intval;
     char* id;
+    struct ExprList* exprlist;  // <- BUNU EKLE
 }
+
+%type <exprlist> expr_list
+
 
 %token <intval> INTEGER
 %token <id> IDENTIFIER
@@ -66,6 +91,7 @@ statement:
     | function_def
     | draw_stmt
     | input_stmt
+    | function_call
 ;
 
 if_stmt:
@@ -116,6 +142,23 @@ comparison_expr:
     | expr GT expr
     | expr GE expr
 ;
+
+function_call:
+    IDENTIFIER expr_list {
+       
+        
+    }
+;
+
+expr_list:
+      expr {
+          $$ = create_expr_list($1, NULL);
+      }
+    | expr ',' expr_list {
+          $$ = create_expr_list($1, $3);
+      }
+;
+
 
 logic_expr:
       comparison_expr
