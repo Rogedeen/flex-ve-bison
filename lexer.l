@@ -1,11 +1,15 @@
+%{
+#define YY_NO_UNISTD_H
 #define _CRT_NONSTDC_NO_DEPRECATE
 #define _CRT_SECURE_NO_WARNINGS
 
-%{
 #include "parser.h"
 #include <stdio.h>
 FILE* yyin;
 %}
+
+%option noyywrap nodefault
+
 
 %%
 "--".*                          ;
@@ -13,8 +17,13 @@ FILE* yyin;
 [a-zA-Z_][a-zA-Z0-9_]*          { return IDENTIFIER; }
 "<-"                            { return ASSIGN; }
 "+"                             { return PLUS; }
-[ \t\r\n]+                      ;  // boþluklarý yoksay
+"-"                             { return MINUS; }
+"*"                             { return TIMES; }
+"/"                             { return DIVIDE; }
+"%"                             { return MOD; }
+"^"                             { return POWER; }
+[ \t\r\n]+                      ;  // boþluk
 .                               { printf("Bilinmeyen karakter: %s\n", yytext); }
+
 %%
 
-int yywrap(void) { return 1; }

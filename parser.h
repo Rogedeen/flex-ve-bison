@@ -35,8 +35,8 @@
    especially those whose name start with YY_ or yy_.  They are
    private implementation details that can be changed or removed.  */
 
-#ifndef YY_YY_C_USERS_IYUNU_SOURCE_REPOS_FLEX_VE_BISON_PARSER_H_INCLUDED
-# define YY_YY_C_USERS_IYUNU_SOURCE_REPOS_FLEX_VE_BISON_PARSER_H_INCLUDED
+#ifndef YY_YY_PARSER_H_INCLUDED
+# define YY_YY_PARSER_H_INCLUDED
 /* Debug traces.  */
 #ifndef YYDEBUG
 # define YYDEBUG 0
@@ -57,7 +57,12 @@ extern int yydebug;
     INTEGER = 258,                 /* INTEGER  */
     IDENTIFIER = 259,              /* IDENTIFIER  */
     ASSIGN = 260,                  /* ASSIGN  */
-    PLUS = 261                     /* PLUS  */
+    PLUS = 261,                    /* PLUS  */
+    MINUS = 262,                   /* MINUS  */
+    TIMES = 263,                   /* TIMES  */
+    DIVIDE = 264,                  /* DIVIDE  */
+    MOD = 265,                     /* MOD  */
+    POWER = 266                    /* POWER  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
@@ -66,12 +71,12 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 9 "C:\\Users\\iyunu\\source\\repos\\flex ve bison\\parser.y"
+#line 11 "parser.y"
 
     int intval;
     char* id;
 
-#line 75 "C:\\Users\\iyunu\\source\\repos\\flex ve bison\\parser.h"
+#line 80 "parser.h"
 
 };
 typedef union YYSTYPE YYSTYPE;
@@ -86,4 +91,4 @@ extern YYSTYPE yylval;
 int yyparse (void);
 
 
-#endif /* !YY_YY_C_USERS_IYUNU_SOURCE_REPOS_FLEX_VE_BISON_PARSER_H_INCLUDED  */
+#endif /* !YY_YY_PARSER_H_INCLUDED  */

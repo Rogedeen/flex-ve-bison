@@ -19,12 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\lexer.c">
-      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
-    </ClCompile>
-    <ClCompile Include="..\parser.c">
-      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
-    </ClCompile>
+    <ClCompile Include="..\lexer.c" />
+    <ClCompile Include="..\parser.c" />
     <ClCompile Include="flex ve bison.cpp" />
   </ItemGroup>
   <ItemGroup>
